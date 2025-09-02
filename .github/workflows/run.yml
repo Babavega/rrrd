@@ -33,9 +33,7 @@ jobs:
     # 4️⃣ Run Cloudflare Tunnel
     - name: Start Cloudflare Tunnel
       run: |
-        Start-Process -FilePath .\cloudflared.exe -ArgumentList "tunnel --no-autoupdate run --token $Env:CLOUDFLARE_TUNNEL_TOKEN" -NoNewWindow
-      env:
-        CLOUDFLARE_TUNNEL_TOKEN: ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}
+        Start-Process -FilePath .\cloudflared.exe -ArgumentList "tunnel --no-autoupdate run --token eyJhIjoiMjZhNzQ4YmM1YjliMDMzNDk3Nzk1ODMxNGJlZGJhNTciLCJ0IjoiY2YzYWE2N2QtY2YwOS00ZmY4LWE0NmMtMmNlZmVjYTRkNjlhIiwicyI6IlpUVTRPV1JqTnpBdFlqTTFOQzAwTXpjNExUaGlZbVF0T1RZeVkyVmxZVGRqWVdFeSJ9" -NoNewWindow
 
     # 5️⃣ Output instructions
     - name: RDP Instructions
