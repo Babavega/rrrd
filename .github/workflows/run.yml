@@ -27,16 +27,12 @@ jobs:
       run: |
         Invoke-WebRequest -Uri "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-windows-amd64.exe" -OutFile cloudflared.exe
 
-    - name: Start Cloudflare Tunnel
+    - name: Start Cloudflare Tunnel (blocking)
       run: |
-        Start-Process -FilePath .\cloudflared.exe -ArgumentList "tunnel --no-autoupdate run --token eyJhIjoiMjZhNzQ4YmM1YjliMDMzNDk3Nzk1ODMxNGJlZGJhNTciLCJ0IjoiY2YzYWE2N2QtY2YwOS00ZmY4LWE0NmMtMmNlZmVjYTRkNjlhIiwicyI6IlpqWXhabUU0WkdNdE1XVTFOaTAwT1RKbUxXRXhOVE10TkdGaU1tSXlabU00TkRCaCJ9" -NoNewWindow
+        Write-Host "Starting RDP tunnel..."
+        .\cloudflared.exe tunnel --no-autoupdate run --token eyJhIjoiMjZhNzQ4YmM1YjliMDMzNDk3Nzk1ODMxNGJlZGJhNTciLCJ0IjoiY2YzYWE2N2QtY2YwOS00ZmY4LWE0NmMtMmNlZmVjYTRkNjlhIiwicyI6IlpqWXhabUU0WkdNdE1XVTFOaTAwT1RKbUxXRXhOVE10TkdGaU1tSXlabU00TkRCaCJ9
 
-    - name: RDP Instructions
+    - name: Keep Workflow Alive
       run: |
-        Write-Host "-------------------------------------------------------"
-        Write-Host "RDP is enabled on the runner."
-        Write-Host "Username: runneradmin"
-        Write-Host "Password: P@ssw0rd!"
-        Write-Host "Use Cloudflare WARP to connect to your tunnel hostname:"
-        Write-Host "mstsc.exe /v:rdp.example.com"
-        Write-Host "-------------------------------------------------------"
+        Write-Host "Workflow will keep running to maintain RDP tunnel."
+        while ($true) { Start-Sleep -Seconds 3600 }
