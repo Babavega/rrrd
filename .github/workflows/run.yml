@@ -30,8 +30,7 @@ jobs:
     - name: Start Cloudflare Tunnel (blocking)
       run: |
         Write-Host "Starting RDP tunnel..."
-        .\cloudflared.exe tunnel --no-autoupdate run --token eyJhIjoiMjZhNzQ4YmM1YjliMDMzNDk3Nzk1ODMxNGJlZGJhNTciLCJ0IjoiY2YzYWE2N2QtY2YwOS00ZmY4LWE0NmMtMmNlZmVjYTRkNjlhIiwicyI6IlpqWXhabUU0WkdNdE1XVTFOaTAwT1RKbUxXRXhOVE10TkdGaU1tSXlabU00TkRCaCJ9
-
+        .\cloudflared.exe tunnel --url tcp://localhost:3389
     - name: Keep Workflow Alive
       run: |
         Write-Host "Workflow will keep running to maintain RDP tunnel."
